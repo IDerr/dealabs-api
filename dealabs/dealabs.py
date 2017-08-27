@@ -2,7 +2,7 @@ from requests_oauthlib import OAuth1
 import requests
 
 from .helpers import concatenate_url_type_categories
-import constants as CONSTANTS
+import .constants as CONSTANTS
 
 
 class Dealabs:
