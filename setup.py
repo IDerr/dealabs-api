@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 def install():
     desc = 'Dealabs API'
     setup(
-        name='dealabs-api',
+        name='dealabs',
         version='0.1',
         description=desc,
         long_description=desc,
