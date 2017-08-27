@@ -1,4 +1,5 @@
-import constants as CONSTANTS
+from .constants import constants as CONSTANTS
+
 
 
 def concatenate_url_type_categories(url, typ, categories):
