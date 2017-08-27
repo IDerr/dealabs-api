@@ -1,4 +1,4 @@
-from requests_oauthlib import OAuth1, OAuth1
+from requests_oauthlib import OAuth1
 from helpers import concatenate_url_type_categories
 
 import requests
@@ -14,29 +14,28 @@ class Dealabs:
         self.oauth = OAuth1(self.client_key, client_secret=self.client_secret)
 
     def request(self, url, method='GET', data=None):
-    	r = requests.request(method=method, url=url, data=data,
-							 headers=self.headers, auth=self.oauth)
-    	return r
+        r = requests.request(method=method, url=url, data=data, headers=self.headers, auth=self.oauth).json()
+        return r
 
     def get_categories(self):
-    	url = CONSTANTS.API_CATEGORY
-    	return self.request(url=url)
+        url = CONSTANTS.API_CATEGORY
+        return self.request(url=url)
 
     def get_regions(self):
-    	url = CONSTANTS.API_REGION
-    	return self.request(url=url)
+        url = CONSTANTS.API_REGION
+        return self.request(url=url)
 
     def get_member_deals(self, member_id, results=CONSTANTS.RESULTS):
-    	url = CONSTANTS.API_MEMBER_DEALS.format(str(member_id), str(results))
-    	return self.request(url=url)
+        url = CONSTANTS.API_MEMBER_DEALS.format(str(member_id), str(results))
+        return self.request(url=url)
 
     def get_member_comments(self, member_id, results=CONSTANTS.RESULTS):
-    	url = CONSTANTS.API_MEMBER_COMMENTS.format(str(member_id), str(results))
-    	return self.request(url=url)
+        url = CONSTANTS.API_MEMBER_COMMENTS.format(str(member_id), str(results))
+        return self.request(url=url)
 
     def get_deal_comments(self, deal_id, results=CONSTANTS.RESULTS):
-    	url = CONSTANTS.API_DEAL_COMMENTS.format(str(deal_id), str(results))
-    	return self.request(url=url)
+        url = CONSTANTS.API_DEAL_COMMENTS.format(str(deal_id), str(results))
+        return self.request(url=url)
 
     def get_deals_hot(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
         url = CONSTANTS.API_DEAL_HOT.format(str(results))
