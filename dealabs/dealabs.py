@@ -1,7 +1,7 @@
 from requests_oauthlib import OAuth1
-from helpers import concatenate_url_type_categories
-
 import requests
+
+from .helpers import concatenate_url_type_categories
 import constants as CONSTANTS
 
 
