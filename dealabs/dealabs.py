@@ -1,8 +1,8 @@
-from requests_oauthlib import OAuth1, OAuth1
-from helpers import concatenate_url_type_categories
-
+from requests_oauthlib import OAuth1
 import requests
-import constants as CONSTANTS
+
+from .helpers import concatenate_url_type_categories
+from .constants import *
 
 
 class Dealabs:
@@ -14,61 +14,60 @@ class Dealabs:
         self.oauth = OAuth1(self.client_key, client_secret=self.client_secret)
 
     def request(self, url, method='GET', data=None):
-    	r = requests.request(method=method, url=url, data=data,
-							 headers=self.headers, auth=self.oauth)
-    	return r
+        r = requests.request(method=method, url=url, data=data, headers=self.headers, auth=self.oauth).json()
+        return r
 
     def get_categories(self):
-    	url = CONSTANTS.API_CATEGORY
-    	return self.request(url=url)
+        url = API_CATEGORY
+        return self.request(url=url)
 
     def get_regions(self):
-    	url = CONSTANTS.API_REGION
-    	return self.request(url=url)
+        url = API_REGION
+        return self.request(url=url)
 
-    def get_member_deals(self, member_id, results=CONSTANTS.RESULTS):
-    	url = CONSTANTS.API_MEMBER_DEALS.format(str(member_id), str(results))
-    	return self.request(url=url)
+    def get_member_deals(self, member_id, results=RESULTS):
+        url = API_MEMBER_DEALS.format(str(member_id), str(results))
+        return self.request(url=url)
 
-    def get_member_comments(self, member_id, results=CONSTANTS.RESULTS):
-    	url = CONSTANTS.API_MEMBER_COMMENTS.format(str(member_id), str(results))
-    	return self.request(url=url)
+    def get_member_comments(self, member_id, results=RESULTS):
+        url = API_MEMBER_COMMENTS.format(str(member_id), str(results))
+        return self.request(url=url)
 
-    def get_deal_comments(self, deal_id, results=CONSTANTS.RESULTS):
-    	url = CONSTANTS.API_DEAL_COMMENTS.format(str(deal_id), str(results))
-    	return self.request(url=url)
+    def get_deal_comments(self, deal_id, results=RESULTS):
+        url = API_DEAL_COMMENTS.format(str(deal_id), str(results))
+        return self.request(url=url)
 
-    def get_deals_hot(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_HOT.format(str(results))
+    def get_deals_hot(self, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_HOT.format(str(results))
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
 
-    def get_deals_new(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_NEW.format(str(results))
+    def get_deals_new(self, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_NEW.format(str(results))
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
 
-    def get_deals_discussed(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_DISCUSSED.format(str(results))
+    def get_deals_discussed(self, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_DISCUSSED.format(str(results))
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
 
-    def get_deals_comment_notifications(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_COMMENT_NOTIFICATIONS.format(str(results))
+    def get_deals_comment_notifications(self, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_COMMENT_NOTIFICATIONS.format(str(results))
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
 
-    def get_deals_alert_notifications(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_ALERT_NOTIFICATIONS.format(str(results))
+    def get_deals_alert_notifications(self, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_ALERT_NOTIFICATIONS.format(str(results))
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
 
-    def get_deals_alerts(self, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_ALERTS.format(str(results))
+    def get_deals_alerts(self, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_ALERTS.format(str(results))
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
 
-    def search_deals(self, search, typ=None, categories=None, results=CONSTANTS.RESULTS):
-        url = CONSTANTS.API_DEAL_SEARCH.format(str(results), search)
+    def search_deals(self, search, typ=None, categories=None, results=RESULTS):
+        url = API_DEAL_SEARCH.format(str(results), search)
         url = concatenate_url_type_categories(url, typ, categories)
         return self.request(url=url)
