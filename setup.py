@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-
 def install():
-    desc = 'Dealabs API'
+    desc = 'A Python client library for rutube!'
     setup(
-        name='dealabs',
+        name='dealabs-api',
         version='0.1',
         description=desc,
         long_description=desc,
         author='IDerr',
-        author_email='---',
+        author_email='',
         url='https://github.com/IDerr/dealabs-api',
-        classifiers=[
+        classifiers=['Operating System :: POSIX',
+                     'Operating System :: Microsoft :: Windows',
+                     'Operating System :: MacOS :: MacOS X',
                      'Programming Language :: Python',
                      'Programming Language :: Python :: 3.2',
                      'Programming Language :: Python :: 3.3',
@@ -27,7 +28,6 @@ def install():
             'requests_oauthlib'
         ],
     )
-
 
 if __name__ == "__main__":
     install()
