@@ -1,6 +1,7 @@
 import requests
 from requests_oauthlib import OAuth1
 from .constants import *
+from .models import Deal
 
 
 class Dealabs:
@@ -9,7 +10,7 @@ class Dealabs:
         self.client_key = "539f008401dbb"
         self.client_secret = "539f008401e9c"
         self.headers = {
-            'User-Agent': 'com.dealabs.apps.android ANDROID [v5.18.03] [22 | SM-G930K] [@2.0x]',
+            'User-Agent': 'com.dealabs.apps.android ANDROID [v7.19.00] [22 | SM-G930K] [@2.0x]',
             'Pepper-Include-Counters': 'unread_alerts',
             'Pepper-Include-Prev-And-Next-Ids': 'true',
             'Pepper-JSON-Format': 'thread=list,group=ids,type=light,event=light,user=full,badge=user,formatted_text=html,message=with_code',
@@ -49,4 +50,5 @@ class Dealabs:
         }
         params = {**new_options, **params}
         req = self.request(url=API_DEAL_THREAD, params=params)
-        return req
+        deals_data = req.get('data', [])
+        return [Deal(deal_data) for deal_data in deals_data]
