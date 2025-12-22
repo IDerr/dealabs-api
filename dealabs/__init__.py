@@ -1,3 +1,6 @@
-from .dealabs import Dealabs
+__version__ = "0.1.0"
 
-__all__ = ['Dealabs']
+from .dealabs import Dealabs
+from .models import Deal, Thread, Comment
+
+__all__ = ['Dealabs', 'Deal', 'Thread', 'Comment', '__version__']

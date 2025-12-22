@@ -1,7 +1,7 @@
 import requests
 from requests_oauthlib import OAuth1
 from .constants import *
-from .models import Deal
+from .models import Deal, Thread, Comment
 
 
 class Dealabs:
@@ -52,3 +52,35 @@ class Dealabs:
         req = self.request(url=API_DEAL_THREAD, params=params)
         deals_data = req.get('data', [])
         return [Deal(deal_data) for deal_data in deals_data]
+
+    def get_thread(self, thread_id, params={}):
+        """
+        Fetch detailed information about a specific thread.
+
+        Args:
+            thread_id: The ID of the thread to fetch
+            params: Optional query parameters
+
+        Returns:
+            Thread object with detailed information
+        """
+        url = API_THREAD_DETAIL.format(thread_id=thread_id)
+        response = self.request(url=url, params=params)
+        thread_data = response.get('data', {})
+        return Thread(thread_data)
+
+    def get_thread_comments(self, thread_id, params={}):
+        """
+        Fetch comments for a specific thread.
+
+        Args:
+            thread_id: The ID of the thread to fetch comments for
+            params: Optional query parameters (e.g., page, limit, order)
+
+        Returns:
+            List of Comment objects
+        """
+        url = API_THREAD_COMMENTS.format(thread_id=thread_id)
+        response = self.request(url=url, params=params)
+        comments_data = response.get('data', [])
+        return [Comment(comment_data) for comment_data in comments_data]

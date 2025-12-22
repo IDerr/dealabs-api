@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+recursive-include dealabs *.py
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store

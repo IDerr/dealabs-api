@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dealabs-api"
+version = "0.2.0"
+description = "A Python client library for the Dealabs.com API"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+authors = [
+    {name = "IDerr"}
+]
+keywords = ["dealabs", "deals", "api", "client"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "requests>=2.20.0",
+    "requests-oauthlib>=1.2.0",
+    "click>=7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.10",
+    "black>=21.0",
+    "flake8>=3.9",
+    "mypy>=0.910",
+]
+
+[project.urls]
+Homepage = "https://github.com/IDerr/dealabs-api"
+Repository = "https://github.com/IDerr/dealabs-api.git"
+Issues = "https://github.com/IDerr/dealabs-api/issues"
+
+[project.scripts]
+dealabs = "dealabs.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dealabs*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py36']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=dealabs"
+
+[tool.mypy]
+python_version = "3.6"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
